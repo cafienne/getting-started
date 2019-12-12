@@ -1,0 +1,120 @@
+<CMMNDI>
+    <CMMNDiagram>
+        <CMMNShape cmmnElementRef="cm_travelrequest.case_travelrequest_0">
+            <Bounds x="50" y="60" width="1296" height="641"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="cm_csgxw_215">
+            <Bounds x="91" y="372" width="167" height="60"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="cm_cs9Q0_205">
+            <Bounds x="91" y="107" width="141" height="60"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="cm_cs9Q0_207">
+            <Bounds x="848" y="97" width="458" height="234"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="cm_csgxw_208">
+            <Bounds x="871" y="136" width="168" height="60"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="cm_csgxw_210">
+            <Bounds x="869" y="233" width="166" height="60"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="cm_cs3yg_479">
+            <Bounds x="1080" y="232" width="144" height="60"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="cm_cs3yg_487">
+            <Bounds x="1087" y="138" width="190" height="60"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="cm_csgxw_213">
+            <Bounds x="99" y="209" width="121" height="40"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="cm_csgxw_219">
+            <Bounds x="868" y="370" width="142" height="40"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="cm_csgxw_220">
+            <Bounds x="1151" y="369" width="100" height="40"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="cm_csgxw_223">
+            <Bounds x="779" y="446" width="350" height="214"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="cm_csgxw_226">
+            <Bounds x="799" y="481" width="158" height="60"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="cm_csjTZ_640">
+            <Bounds x="802" y="563" width="142" height="60"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="cm_csjTZ_642">
+            <Bounds x="975" y="562" width="128" height="60"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="cm_csgxw_228">
+            <Bounds x="1150" y="456" width="148" height="60"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="cm_csEae_323">
+            <Bounds x="133" y="602" width="32" height="32"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="cm_csSAF_389">
+            <Bounds x="265" y="102" width="485" height="233"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="cm_csSAF_392">
+            <Bounds x="306" y="140" width="174" height="60"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="cm_cs3yg_484">
+            <Bounds x="529" y="138" width="172" height="60"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="cm_csgxw_212">
+            <Bounds x="948" y="223" width="12" height="20"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="cm_cs3yg_481">
+            <Bounds x="1074" y="253" width="12" height="20"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="cm_cs3yg_489">
+            <Bounds x="1081" y="154" width="12" height="20"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="cm_csGrn_388">
+            <Bounds x="151" y="199" width="12" height="20"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="cm_csgxw_222">
+            <Bounds x="933" y="360" width="12" height="20"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="cm_csgxw_221">
+            <Bounds x="1199" y="359" width="12" height="20"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="cm_csgxw_225">
+            <Bounds x="940" y="436" width="12" height="20"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="cm_cskek_645">
+            <Bounds x="1123" y="538" width="12" height="20"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="cm_csjTZ_644">
+            <Bounds x="969" y="585" width="12" height="20"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="cm_css9P_478">
+            <Bounds x="1178" y="446" width="12" height="20"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="cm_csgxw_230">
+            <Bounds x="1202" y="446" width="12" height="20"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="cm_cs3yg_483">
+            <Bounds x="300" y="159" width="12" height="20"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="cm_cs3yg_486">
+            <Bounds x="523" y="158" width="12" height="20"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="cm_csEae_324">
+            <Bounds x="145" y="691" width="12" height="20"/>
+        </CMMNShape>
+        <CMMNEdge sourceCMMNElementRef="cm_csgxw_222" targetCMMNElementRef="cm_cs9Q0_207"/>
+        <CMMNEdge sourceCMMNElementRef="cm_csgxw_221" targetCMMNElementRef="cm_cs9Q0_207"/>
+        <CMMNEdge sourceCMMNElementRef="cm_csgxw_220" targetCMMNElementRef="cm_csgxw_230"/>
+        <CMMNEdge sourceCMMNElementRef="cm_csgxw_219" targetCMMNElementRef="cm_css9P_478">
+            <waypoint x="1110" y="415"/>
+        </CMMNEdge>
+        <CMMNEdge sourceCMMNElementRef="cm_csEae_323" targetCMMNElementRef="cm_csEae_324"/>
+        <CMMNEdge sourceCMMNElementRef="cm_csgxw_219" targetCMMNElementRef="cm_csgxw_225"/>
+        <CMMNEdge sourceCMMNElementRef="cm_csgxw_226" targetCMMNElementRef="cm_cskek_645"/>
+        <CMMNEdge sourceCMMNElementRef="cm_csSAF_389" targetCMMNElementRef="cm_csgxw_222"/>
+        <CMMNEdge sourceCMMNElementRef="cm_csjTZ_642" targetCMMNElementRef="cm_cskek_645"/>
+        <CMMNEdge sourceCMMNElementRef="cm_csjTZ_640" targetCMMNElementRef="cm_csjTZ_644"/>
+        <CMMNEdge sourceCMMNElementRef="cm_csgxw_210" targetCMMNElementRef="cm_cs3yg_481"/>
+        <CMMNEdge sourceCMMNElementRef="cm_csgxw_208" targetCMMNElementRef="cm_csgxw_212"/>
+    </CMMNDiagram>
+</CMMNDI>
