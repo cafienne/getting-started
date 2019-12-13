@@ -1,10 +1,7 @@
-<humanTask>
-  <!-- Cafienne extension for HumanTasks -->
-  <cafienne:implementation xmlns:cafienne="org.cafienne" class="org.cafienne.cmmn.definition.task.WorkflowTaskDefinition" isBlocking="true">
-    <input id="Assignee" name="Assignee"/>
-    <input id="TravelRequest" name="TravelRequest"/>
-    <input id="DueDate5" name="DueDate"/>
-    <task-model>
+<humantask>
+    <cafienne:implementation xmlns:cafienne="org.cafienne" class="org.cafienne.cmmn.definition.task.WorkflowTaskDefinition" name="ArrangeVisa" description="Arrange Visa">
+        <input id="TravelRequest" name="TravelRequest"/>
+        <task-model>
       {
         "schema": {
         "type": "object",
@@ -82,5 +79,5 @@
         }
       }
     </task-model>
-  </cafienne:implementation>
-</humanTask>
+    </cafienne:implementation>
+</humantask>

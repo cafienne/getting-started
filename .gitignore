@@ -85,7 +85,4 @@ hs_err_pid*
 
 run/
 target/
-src/ldap/run/data/*
-src/ldap/run/certs/*
-src/ldap/run/config/*
 documentation/UserContext.md

@@ -1,9 +1,9 @@
-<humantask id="id_x2c3" name="ManuallySetApprover" description="" isBlocking="true">
-	<cafienne:implementation xmlns:cafienne="org.cafienne" class="org.cafienne.cmmn.definition.task.WorkflowTaskDefinition">
-		<input id="TravelRequest_1" name="TravelRequest"/>
-		<input id="DueDate_1" name="DueDate"/>
-		<output id="Project_1" name="Project"/>
-		<task-model>
+<humantask>
+    <cafienne:implementation xmlns:cafienne="org.cafienne" class="org.cafienne.cmmn.definition.task.WorkflowTaskDefinition" name="ManuallySetApprover" description="">
+        <input id="TravelRequest_1" name="TravelRequest"/>
+        <input id="DueDate_1" name="DueDate"/>
+        <output id="Project_1" name="Project"/>
+        <task-model>
 		{
   "schema": {
       "type": "object",
@@ -362,5 +362,5 @@
   }
 }
 		</task-model>
-	</cafienne:implementation>
+    </cafienne:implementation>
 </humantask>

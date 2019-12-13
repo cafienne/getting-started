@@ -1,10 +1,9 @@
-<humanTask>
-	<!-- Cafienne extension for HumanTasks -->
-	<cafienne:implementation xmlns:cafienne="org.cafienne" class="org.cafienne.cmmn.definition.task.WorkflowTaskDefinition">
-		<input id="TravelRequest_3" name="TravelRequest"/>
-		<input id="DueDate_3" name="DueDate"/>
-		<output id="Project_3" name="Project"/>
-		<task-model>
+<humantask>
+    <cafienne:implementation xmlns:cafienne="org.cafienne" class="org.cafienne.cmmn.definition.task.WorkflowTaskDefinition" name="CreateTravelPO" description="Create Travel Purchase Order">
+        <input id="TravelRequest_3" name="TravelRequest"/>
+        <input id="DueDate_3" name="DueDate"/>
+        <output id="Project_3" name="Project"/>
+        <task-model>
 	{
   "schema": {
       "type": "object",
@@ -374,5 +373,5 @@
 		}}
 	}
 		</task-model>
-	</cafienne:implementation>
-</humanTask>
+    </cafienne:implementation>
+</humantask>

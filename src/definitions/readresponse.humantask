@@ -1,7 +1,7 @@
 <humantask>
     <cafienne:implementation xmlns:cafienne="org.cafienne" class="org.cafienne.cmmn.definition.task.WorkflowTaskDefinition" name="ReadRespose" description="Read Response">
         <input id="Response" name="Response"/>
-        <output id="_gbxp_Greeting" name="Greeting"/>
+        <output id="_MZBR_Greeting" name="Greeting"/>
         <task-model>
 			{
 				"schema": {
