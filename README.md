@@ -1,6 +1,6 @@
 # Getting started with Cafienne
 
-This repository enables you to setup a Cafienne demo environment based on docker images of Cafienne, Cassandra, Postgres and Dex.
+This repository enables you to setup a Cafienne demo environment based on docker images of Cafienne, Cassandra, Postgres, Sqlserver and Dex.
 
 ## Prerequisites
 
@@ -12,8 +12,10 @@ Next clone this repository from GitHub by running the following command in a ter
 `git clone https://github.com/cafienne/getting-started.git`
 
 ## Running the environment
-
-See [Running a Cafienne Demo environment with docker](documentation/docker.md)
+Cafienne can be setup with different environments:
+- See [Running a Cafienne Demo docker environment with cassandra and postgres](documentation/docker-cassandra.md)
+- See [Running a Cafienne Demo docker environment with only postgres](documentation/docker-postgres.md)
+- See [Running a Cafienne Demo docker environment with only sqlserver](documentation/docker-sqlserver.md)
 
 ## Exposed URLs of the Cafienne Demo environment
 
