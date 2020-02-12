@@ -15,8 +15,8 @@ Ensure your Docker is using at least 4G of memory (Docker -> Preferences... -> A
 To run the environment (with docker-compose) use the following steps:
 
 1. Open a terminal/command prompt
-2. Run `$ docker-compose -f cafienne-demo.yml pull` to pull the latest Cafienne docker images
-3. Run the environment by running: `docker-compose -f cafienne-demo.yml up`
+2. Run `$ docker-compose pull` to pull the latest Cafienne docker images
+3. Run the environment by running: `docker-compose up`
 
 This will pull the required images from docker hub, create the required containers and start them.
 It therefore may take a while ...
@@ -29,19 +29,19 @@ The first one stops a running environment and removes all created containers.
 So everything is completely removed. Only use this method if you want to rebuild all
 containers and start with a clean environment.
 
-1. In a new terminal window, run: `$ docker-compose -f cafienne-demo.yml down`
+1. In a new terminal window, run: `$ docker-compose down`
 
 The second method only stops the running containers and all data is preserved. Use this method if you want
 to preserve all your running cases.
 
-1. In a new terminal window, run: `$ docker-compose -f cafienne-demo.yml stop`
+1. In a new terminal window, run: `$ docker-compose stop`
 
 ### Running the environment normally (after the first time)
 
 After creating/running the environment the first time, you can use the following
  command to start all the containers again.
 
-1. Open a terminal window/command prompt and run: `$ docker-compose -f cafienne-demo.yml start`
+1. Open a terminal window/command prompt and run: `$ docker-compose start`
 
 ## Exposed URLs
 

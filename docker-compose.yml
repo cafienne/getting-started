@@ -1,7 +1,7 @@
 # This compose will work with docker 1.13.1+
 #
 # To run, call:
-#   $ docker-compose -f cafienne-demo.yml up
+#   $ docker-compose up
 #
 version: '3.1'
 services:
