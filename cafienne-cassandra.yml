@@ -1,7 +1,7 @@
 # This compose will work with docker 1.13.1+
 #
 # To run, call:
-#   $ docker-compose up
+#   $ docker-compose -f cafienne-cassandra.yml up
 #
 version: '3.1'
 services:
@@ -55,8 +55,9 @@ services:
     environment:
       POSTGRES_USER: postgresuser
       POSTGRES_PASSWORD: mysecret
+      POSTGRES_DB: cafienne-query
     volumes:
-      - db-data:/var/lib/postgresql/data      
+      - cassandra-conf-db-data:/var/lib/postgresql/data      
 
   cassandra:
     image: cassandra:3.11
@@ -71,7 +72,7 @@ services:
     hostname: cassandra
     container_name: cassandra
     volumes:
-     - cs-data:/var/lib/cassandra    
+     - cassandra-conf-cs-data:/var/lib/cassandra    
     healthcheck:
       test: ["CMD", "cqlsh", "--execute", "show version;quit"]
       interval: 30s
@@ -79,7 +80,7 @@ services:
       retries: 5
 
   cafienne-ide:
-    image: cafienne/ide:1.1.0
+    image: cafienne/ide:latest
     labels: 
       component: cafienne-ide
     networks:
@@ -97,11 +98,9 @@ services:
       - ./src/definitions:/usr/src/app/repository   
     depends_on:
       - cafienne
-    links:
-      - cafienne
 
   generic-ui:
-    image: cafienne/generic-ui:1.1.0
+    image: cafienne/generic-ui:latest
     labels: 
       component: generic-ui
     networks: 
@@ -126,12 +125,9 @@ services:
     depends_on:
       - cafienne
       - idp
-    links:
-      - cafienne
-      - idp
 
   cafienne:
-    image: cafienne/engine:1.1.0
+    image: cafienne/engine:latest
     labels:
       component: cafienne-engine    
     networks: 
@@ -149,23 +145,21 @@ services:
       retries: 5
     environment:
       CS_HOST: ${CS_HOST:-cassandra}
-      PS_HOST: ${PS_HOST:-jdbc:postgresql://postgres:5432/postgresuser}      
+      PROJECTION_DB_URL: ${PROJECTION_DB_URL:-jdbc:postgresql://postgres:5432/cafienne-query?reWriteBatchedInserts=true}    
     volumes:
       - ./run/cafienne/journal:/opt/cafienne/journal
       - ./target/definitions:/opt/cafienne/definitions
-      - ./src/conf:/opt/cafienne/conf
+      - ./src/cassandra-conf:/opt/cafienne/conf
     depends_on:
       - postgres
       - cassandra
-      - mailcatcher
-    links:
-      - cassandra
+      - idp
       - mailcatcher
 
 volumes:
-  cs-data:
+  cassandra-conf-cs-data:
     driver: local
-  db-data:
+  cassandra-conf-db-data:
     driver: local
   dex:
     driver: local
