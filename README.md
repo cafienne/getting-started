@@ -1,25 +1,37 @@
 # Getting started with Cafienne
 
-This repository enables you to setup a Cafienne demo environment based on docker images of Cafienne, Cassandra, Postgres, Sqlserver and Dex.
+This repository enables you to quickly setup a Cafienne Demo environment with Docker.
 
 ## Prerequisites
 
-To be able to run this environment, you need to have access to the getting-started repository in Github. Please contact info@cafienne.io to arrange the proper access.
-Before contacting Cafienne you need to create a [Github](https://github.com) account for yourself.
+The Cafienne Demo environment consists of a set of Docker images. Make sure you have a running [Docker](https://www.docker.com/) instance available on your system.
+
+Furthermore you need to have access to the [`Cafienne getting-started`](https://github.com/cafienne/getting-started) repository in Github.
+
+Please contact info@cafienne.io to arrange the proper access.
+Before contacting Cafienne make sure to have a [Github](https://github.com) account.
+
+## Downloading and starting the environment
 
 Next clone this repository from GitHub by running the following command in a terminal:
 
-`git clone https://github.com/cafienne/getting-started.git`
+```
+# this step puts the code onto your system
+git clone https://github.com/cafienne/getting-started.git
 
-## Running the environment
-Cafienne can be setup with different environments:
-- See [Running a Cafienne Demo docker environment with cassandra and postgres](documentation/docker-cassandra.md)
-- See [Running a Cafienne Demo docker environment with only postgres](documentation/docker-postgres.md)
-- See [Running a Cafienne Demo docker environment with only sqlserver](documentation/docker-sqlserver.md)
+# go into the directory that holds the code
+cd ./getting-started
+
+# tell Docker to spin up the environment - this may take a while the first time you do it
+docker-compose up
+```
+
+This setup is the most default version. This version runs with an in-memory database, which means that whenever you start it, it starts with a blank completely blank environment. Alternatives with e.g. PostgreSQL or Microsoft SQL Server are documented at the [docker configuration](./documentation/docker-configuration.md).
+
 
 ## Exposed URLs of the Cafienne Demo environment
 
-After starting up de Cafienne Demo environment, the following URL allow you to access the various parts of the
+After starting up the Cafienne Demo environment, the following URL allow you to access the various parts of the
 environment:
 
 - Cafienne Generic UI: http://localhost:28080
