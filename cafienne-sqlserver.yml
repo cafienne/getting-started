@@ -43,7 +43,7 @@ services:
       - ./run/dex/:/var/dex/
   
   sql-server:
-    image: cafienne/sqlserver:latest
+    image: batav/circle-ci:sqlserver
     labels:
       component: cafienne-sql-server
     networks: 
@@ -122,12 +122,22 @@ services:
     hostname: cafienne
     container_name: cafienne
     environment:
-      PROJECTION_DB_URL: ${PROJECTION_DB_URL:-jdbc:sqlserver://sql-server:1433;DatabaseName=cafienneQuery;}
+      EVENT_DB_PROFILE: ${EVENT_DB_PROFILE:-slick.jdbc.SQLServerProfile$}
+      EVENT_DB_DRIVER: ${EVENT_DB_DRIVER:-com.microsoft.sqlserver.jdbc.SQLServerDriver}
+      EVENT_DB_USER: ${EVENT_DB_USER:-SA}
+      EVENT_DB_PASSWORD: ${EVENT_DB_PASSWORD:-Abc_123456}
       EVENT_DB_URL: ${EVENT_DB_URL:-jdbc:sqlserver://sql-server:1433;DatabaseName=cafienneEventstore;}    
+      PROJECTION_DB_PROFILE: ${PROJECTION_DB_PROFILE:-slick.jdbc.SQLServerProfile$}
+      PROJECTION_DB_DRIVER: ${PROJECTION_DB_DRIVER:-com.microsoft.sqlserver.jdbc.SQLServerDriver}
+      PROJECTION_DB_USER: ${PROJECTION_DB_USER:-SA}
+      PROJECTION_DB_PASSWORD: ${PROJECTION_DB_PASSWORD:-Abc_123456}
+      PROJECTION_DB_URL: ${PROJECTION_DB_URL:-jdbc:sqlserver://sql-server:1433;DatabaseName=cafienneQuery;}
     volumes:
       - ./run/cafienne/journal:/opt/cafienne/journal
+      - ./run/cafienne/logs:/opt/cafienne/logs
+      - ./src/bootstrap:/opt/cafienne/bootstrap
+      - ./src/jdbc-conf:/opt/cafienne/conf
       - ./target/definitions:/opt/cafienne/definitions
-      - ./src/sqlserver-conf:/opt/cafienne/conf
     healthcheck:
       test: ["CMD", "wget", "-s", "http://localhost:2027/api-docs/swagger.json"]
       interval: 30s
