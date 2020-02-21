@@ -108,8 +108,10 @@ services:
       retries: 5
     volumes:
       - ./run/cafienne/journal:/opt/cafienne/journal
+      - ./run/cafienne/logs:/opt/cafienne/logs
       - ./target/definitions:/opt/cafienne/definitions
       - ./src/conf:/opt/cafienne/conf
+      - ./src/bootstrap:/opt/cafienne/bootstrap
     depends_on:
       - idp
       - mailcatcher

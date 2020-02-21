@@ -60,3 +60,21 @@ staticPasswords:
   hash: "$2a$10$2b2cU8CPhOTaGrs1HRQuAueS7JTT5ZHsHSzYiFPm1leZck7Mc8T4W"
   username: "admin"
   userID: "admin"
+
+- email: "lana@example.com"
+  # bcrypt hash of the string "lana"
+  hash: "$2a$10$ZrEQl/enxrc1bhDWrwhKSePYkqCEf.2X3wXeat/hI0ULOptDUpyCS"
+  username: "lana"
+  userID: "lana"
+
+- email: "suzy@example.com"
+  # bcrypt hash of the string "suzy"
+  hash: "$2a$10$3pTi1m5yR.tBcZMV/dJi.O1NlMPN/ZH03eSmNfJFuTOOTm82T03lK"
+  username: "suzy"
+  userID: "suzy"
+
+- email: "hank@example.com"
+  # bcrypt hash of the string "hank"
+  hash: "$2a$10$osTMgQ8GxoeWghmYcrBXB.0nV9XsoQkAMUcNlL0/wT7qYoJSnbJzS"
+  username: "hank"
+  userID: "hank"
