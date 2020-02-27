@@ -1,7 +1,7 @@
 # This compose will work with docker 1.13.1+
 #
 # To run, call:
-#   $ docker-compose -f cafienne-demo.yml up
+#   $ docker-compose -f cafienne-sqlserver.yml up
 #
 version: '3.1'
 services:
@@ -10,11 +10,6 @@ services:
     image: schickling/mailcatcher:latest
     labels:
       component: mta
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:1080"]
-      interval: 30s
-      timeout: 10s
-      retries: 5
     networks:
       - dev
     expose:
@@ -24,6 +19,11 @@ services:
       - "1080:1080"
     hostname: mailcatcher
     container_name: mailcatcher
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:1080"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
 
   idp:
     image: quay.io/dexidp/dex:v2.21.0
@@ -41,45 +41,29 @@ services:
     volumes:
       - ./src/idp-conf/dex.yaml:/config.yaml
       - ./run/dex/:/var/dex/
-
-  postgres:
-    image: postgres:12.1-alpine
-    networks:
-      - dev
-    expose:
-      - 5432
-    ports:
-      - "5432:5432"
-    hostname: postgres
-    container_name: postgres
-    environment:
-      POSTGRES_USER: postgresuser
-      POSTGRES_PASSWORD: mysecret
-    volumes:
-      - db-data:/var/lib/postgresql/data      
-
-  cassandra:
-    image: cassandra:3.11
+  
+  sql-server:
+    image: batav/circle-ci:sqlserver
     labels:
-      component: event-store
-    networks:
+      component: cafienne-sql-server
+    networks: 
       - dev
     expose:
-      - 9042
+      - 1433
     ports:
-      - "9042:9042"
-    hostname: cassandra
-    container_name: cassandra
+      - "1433:1433"
+    hostname: sql-server
+    container_name: sql-server
+    environment:
+      SA_PASSWORD: Abc_123456
+      ACCEPT_EULA: Y
+      QUERY_DB: cafienneQuery
+      EVENT_DB: cafienneEventstore
     volumes:
-     - cs-data:/var/lib/cassandra    
-    healthcheck:
-      test: ["CMD", "cqlsh", "--execute", "show version;quit"]
-      interval: 30s
-      timeout: 10s
-      retries: 5
+      - sqlserver-conf-db-data:/var/opt/mssql/data
 
   cafienne-ide:
-    image: cafienne/ide:1.1.0
+    image: cafienne/ide:latest
     labels: 
       component: cafienne-ide
     networks:
@@ -97,11 +81,9 @@ services:
       - ./src/definitions:/usr/src/app/repository   
     depends_on:
       - cafienne
-    links:
-      - cafienne
 
   generic-ui:
-    image: cafienne/generic-ui:1.1.0
+    image: cafienne/generic-ui:latest
     labels: 
       component: generic-ui
     networks: 
@@ -126,12 +108,9 @@ services:
     depends_on:
       - cafienne
       - idp
-    links:
-      - cafienne
-      - idp
 
   cafienne:
-    image: cafienne/engine:1.1.0
+    image: cafienne/engine:latest
     labels:
       component: cafienne-engine    
     networks: 
@@ -142,30 +121,35 @@ services:
       - "2027:2027"
     hostname: cafienne
     container_name: cafienne
+    environment:
+      EVENT_DB_PROFILE: ${EVENT_DB_PROFILE:-slick.jdbc.SQLServerProfile$}
+      EVENT_DB_DRIVER: ${EVENT_DB_DRIVER:-com.microsoft.sqlserver.jdbc.SQLServerDriver}
+      EVENT_DB_USER: ${EVENT_DB_USER:-SA}
+      EVENT_DB_PASSWORD: ${EVENT_DB_PASSWORD:-Abc_123456}
+      EVENT_DB_URL: ${EVENT_DB_URL:-jdbc:sqlserver://sql-server:1433;DatabaseName=cafienneEventstore;}    
+      PROJECTION_DB_PROFILE: ${PROJECTION_DB_PROFILE:-slick.jdbc.SQLServerProfile$}
+      PROJECTION_DB_DRIVER: ${PROJECTION_DB_DRIVER:-com.microsoft.sqlserver.jdbc.SQLServerDriver}
+      PROJECTION_DB_USER: ${PROJECTION_DB_USER:-SA}
+      PROJECTION_DB_PASSWORD: ${PROJECTION_DB_PASSWORD:-Abc_123456}
+      PROJECTION_DB_URL: ${PROJECTION_DB_URL:-jdbc:sqlserver://sql-server:1433;DatabaseName=cafienneQuery;}
+    volumes:
+      - ./run/cafienne/journal:/opt/cafienne/journal
+      - ./run/cafienne/logs:/opt/cafienne/logs
+      - ./src/bootstrap:/opt/cafienne/bootstrap
+      - ./src/jdbc-conf:/opt/cafienne/conf
+      - ./target/definitions:/opt/cafienne/definitions
     healthcheck:
       test: ["CMD", "wget", "-s", "http://localhost:2027/api-docs/swagger.json"]
       interval: 30s
       timeout: 10s
       retries: 5
-    environment:
-      CS_HOST: ${CS_HOST:-cassandra}
-      PS_HOST: ${PS_HOST:-jdbc:postgresql://postgres:5432/postgresuser}      
-    volumes:
-      - ./run/cafienne/journal:/opt/cafienne/journal
-      - ./target/definitions:/opt/cafienne/definitions
-      - ./src/conf:/opt/cafienne/conf
     depends_on:
-      - postgres
-      - cassandra
-      - mailcatcher
-    links:
-      - cassandra
+      - sql-server
+      - idp
       - mailcatcher
 
 volumes:
-  cs-data:
-    driver: local
-  db-data:
+  sqlserver-conf-db-data:
     driver: local
   dex:
     driver: local

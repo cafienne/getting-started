@@ -1,10 +1,10 @@
 # Getting started with Cafienne
 
-This repository enables you to setup a Cafienne demo environment based on docker images of Cafienne, Cassandra, Postgres and Dex.
+This repository enables you to setup a Cafienne demo environment based on docker images of Cafienne, Cassandra, Postgres, Sqlserver and Dex.
 
 ## Prerequisites
 
-To be able to run this environment, you need to have access to the cafienne-demo repository in Github. Please contact info@cafienne.io to arrange the proper access.
+To be able to run this environment, you need to have access to the getting-started repository in Github. Please contact info@cafienne.io to arrange the proper access.
 Before contacting Cafienne you need to create a [Github](https://github.com) account for yourself.
 
 Next clone this repository from GitHub by running the following command in a terminal:
@@ -12,8 +12,10 @@ Next clone this repository from GitHub by running the following command in a ter
 `git clone https://github.com/cafienne/getting-started.git`
 
 ## Running the environment
-
-See [Running a Cafienne Demo environment with docker](documentation/docker.md)
+Cafienne can be setup with different environments:
+- See [Running a Cafienne Demo docker environment with cassandra and postgres](documentation/docker-cassandra.md)
+- See [Running a Cafienne Demo docker environment with only postgres](documentation/docker-postgres.md)
+- See [Running a Cafienne Demo docker environment with only sqlserver](documentation/docker-sqlserver.md)
 
 ## Exposed URLs of the Cafienne Demo environment
 
@@ -39,4 +41,4 @@ The Cafienne Demo environment picks up any valid model that is stored in this fo
 
 ## Help
 
-If you need help or encounter issues, you can search the [existing repository issues](https://github.com/cafienne/cafienne-demo/issues) or directly [create a new issue](https://github.com/cafienne/cafienne-demo/issues/new).
+If you need help or encounter issues, you can search the [existing repository issues](https://github.com/cafienne/getting-started/issues) or directly [create a new issue](https://github.com/cafienne/getting-started/issues/new).
