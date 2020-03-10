@@ -66,7 +66,7 @@ services:
     expose:
       - 5432
     ports:
-      - "5432:5432"
+      - "5430:5432"
     hostname: cafienne-query-db
     container_name: cafienne-query-db
     environment:
