@@ -5,7 +5,7 @@ storage:
     file: /var/dex/dex.db
 web:
   http: 0.0.0.0:5556
-  allowedOrigins: ["http://localhost:28080", "http://localhost:2027", "http://localhost:3000"]
+  allowedOrigins: ["*"]
 
 telemetry:
   http: 0.0.0.0:5558
