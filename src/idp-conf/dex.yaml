@@ -1,10 +1,11 @@
-issuer: http://localhost:28080/dex
+issuer: "http://localhost:5556/dex"
 storage:
   type: sqlite3
   config:
     file: /var/dex/dex.db
 web:
   http: 0.0.0.0:5556
+  allowedOrigins: ["http://localhost:28080", "http://localhost:2027", "http://localhost:3000"]
 
 telemetry:
   http: 0.0.0.0:5558
@@ -14,7 +15,7 @@ oauth2:
   responseTypes: [ "code", "token", "id_token" ] # also allowed are "token" and "id_token"
     # By default, Dex will ask for approval to share data with application
     # (approval for sharing data from connected IdP to Dex is separate process on IdP)
-#   skipApprovalScreen: false
+  skipApprovalScreen: true
     # If only one authentication method is enabled, the default behavior is to
     # go directly to it. For connected IdPs, this redirects the browser away
     # from application to upstream provider such as the Google login page
@@ -22,9 +23,6 @@ oauth2:
 logger:
   level: "debug"
   format: "json"
-
-AllowedOrigins:
-- "*"
 
 staticClients:
 - id: swagger-ui
@@ -34,11 +32,7 @@ staticClients:
   secret: ZXhhbXBsZS1hcHAtc2VjcmV0
 - id: cafienne-ui 
   redirectURIs:
-  - 'http://localhost:28080/oidcresponse'
   - 'http://localhost:28080/#/oidcresponse'
-  - 'http://localhost:28080/index.html/#/oidcresponse'
-  - 'http://localhost:28080/index.html#/oidcresponse'
-  - 'http://localhost:28080/index.html#oidcresponse'
   name: 'Cafienne Generic UI'
   secret: ZXhhbXBsZS1hcHAtc2VjcmV0
 
