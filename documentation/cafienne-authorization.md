@@ -3,6 +3,7 @@
 ## Introduction
 The Cafienne Engine holds a multitenancy architecture that enables resource sharing while preserving strict data isolation.
 This page gives an overview of the authorization model in the Cafienne Engine.
+If you prefer to read pictures rather than text, you can go to [this page](cafienne-authorization-in-pictures.md).
 
 This page gives an overview of
 - Authentication model through [OpenID Connect](https://en.wikipedia.org/wiki/OpenID_Connect)
@@ -17,7 +18,9 @@ This page gives an overview of
 The basic concept of ownership is implemented at each of these levels. A level has a group of owners, and owners can change the rights of users and manage each other (add/remove another owner).
 
 ## Users and Authentication
-Users can access Cafienne through `JWT` tokens. A more detailed overview of how that is done can be found in [Cafienne Authentication](cafienne-authentication.md).
+A detailed overview of authentication can be found in [Cafienne Authentication](cafienne-authentication.md).
+
+The short version: users can access Cafienne through `JWT` tokens.
 Internally, Cafienne transforms a `JWT` token into a `Platform User` structure, holding a list of all the tenants the user belongs to.
 
 ## Platform level authorization
@@ -66,7 +69,7 @@ Tenant users can retrieve the list of tenant users, and also individual tenant u
 
 ## Case level authorization
 At the level of individual cases we can also set various authorizations.
-The [`CMMN`](https://www.omg.org/spec/CMMN) specification defines a limited set of authorization rules:
+The [CMMN specification](https://www.omg.org/spec/CMMN) defines a limited set of authorization rules:
 - Execution of Human Tasks can be limited to a specific role
 - Raising of User Events can be limited to a set of roles
 - Planning of Discretionary Items can be limited to a set of roles
@@ -95,3 +98,4 @@ In addition to the above mentioned CMMN rules, the Cafienne Engine also enforces
 - When a TenantUser is added to the CaseTeam, by default the case team role names and tenant role names are mapped one-on-one.
 - More specifically, when a TenantUser asks for tasks, the role field is filtered based on the tenant roles of the user. The underlying table that is queried, however, is filling the task's role field with the CaseTeam role name.
 - There is no notion of CaseTeam maintenance authorization. Any tenant user can add any tenant user with any role to the case team. Typically we would expect a similar concept as Platform Owners and Tenant Owners to apply to the CaseTeam as well.
+- The [CMMN specification](https://www.omg.org/spec/CMMN) does not define authorizations at CaseFile level. In practice that means that any CaseTeam member can see all content of the CaseFile. 
