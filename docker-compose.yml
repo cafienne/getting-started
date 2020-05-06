@@ -43,7 +43,7 @@ services:
       - ./src/dex/web/:/web/
       - ./run/dex/:/var/dex/
 
-  cafienne-event-db:
+  cafienne-db:
     image: postgres:12.1-alpine
     networks:
       - getting_started_network
@@ -51,31 +51,15 @@ services:
       - 5432
     ports:
       - "5431:5432"
-    hostname: cafienne-event-db
-    container_name: cafienne-event-db
+    hostname: cafienne-db
+    container_name: cafienne-getting-started-db
     environment:
       POSTGRES_USER: postgresuser
       POSTGRES_PASSWORD: mysecret
       POSTGRES_DB: cafienne-eventstore
     volumes:
-      - postgres-event-db-data:/var/lib/postgresql/data
-           
-  cafienne-query-db:
-    image: postgres:12.1-alpine
-    networks:
-      - getting_started_network
-    expose:
-      - 5432
-    ports:
-      - "5430:5432"
-    hostname: cafienne-query-db
-    container_name: cafienne-query-db
-    environment:
-      POSTGRES_USER: postgresuser
-      POSTGRES_PASSWORD: mysecret
-      POSTGRES_DB: cafienne-query
-    volumes:
-      - postgres-query-db-data:/var/lib/postgresql/data
+      - ./src/postgres-initdb:/docker-entrypoint-initdb.d
+      - cafienne-db-data:/var/lib/postgresql/data
 
   cafienne-ide:
     image: cafienne/ide:latest
@@ -162,7 +146,7 @@ services:
       timeout: 5s
       retries: 6
     environment:
-      EVENT_DB_URL: ${EVENT_DB_URL:-jdbc:postgresql://cafienne-event-db:5432/cafienne-eventstore?reWriteBatchedInserts=true}    
+      EVENT_DB_URL: ${EVENT_DB_URL:-jdbc:postgresql://cafienne-db:5432/cafienne-eventstore?reWriteBatchedInserts=true}    
       EVENT_DB_PROFILE: ${EVENT_DB_PROFILE:-slick.jdbc.PostgresProfile$}
       EVENT_DB_DRIVER: ${EVENT_DB_DRIVER:-org.postgresql.Driver}
       EVENT_DB_USER: ${EVENT_DB_USER:-postgresuser}
@@ -171,7 +155,7 @@ services:
       PROJECTION_DB_DRIVER: ${PROJECTION_DB_DRIVER:-org.postgresql.Driver}
       PROJECTION_DB_USER: ${PROJECTION_DB_USER:-postgresuser}
       PROJECTION_DB_PASSWORD: ${PROJECTION_DB_PASSWORD:-mysecret}
-      PROJECTION_DB_URL: ${PROJECTION_DB_URL:-jdbc:postgresql://cafienne-query-db:5432/cafienne-query?reWriteBatchedInserts=true}
+      PROJECTION_DB_URL: ${PROJECTION_DB_URL:-jdbc:postgresql://cafienne-db:5432/cafienne-query?reWriteBatchedInserts=true}
     volumes:
       - ./run/cafienne/journal:/opt/cafienne/journal
       - ./run/cafienne/logs:/opt/cafienne/logs
@@ -179,15 +163,12 @@ services:
       - ./src/conf:/opt/cafienne/conf
       - ./src/bootstrap:/opt/cafienne/bootstrap
     depends_on:
-      - cafienne-event-db
-      - cafienne-query-db
+      - cafienne-db
       - idp
       - mailcatcher
 
 volumes:
-  postgres-event-db-data:
-    driver: local
-  postgres-query-db-data:
+  cafienne-db-data:
     driver: local
   dex:
     driver: local
