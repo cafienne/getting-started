@@ -39,7 +39,7 @@ services:
     hostname: idp
     container_name: idp
     volumes:
-      - ./src/idp-conf/dex.yaml:/config.yaml
+      - ./src/configurations/idp-conf/dex.yaml:/config.yaml
       - ./run/dex/:/var/dex/
   
   sql-server:
@@ -135,8 +135,8 @@ services:
     volumes:
       - ./run/cafienne/journal:/opt/cafienne/journal
       - ./run/cafienne/logs:/opt/cafienne/logs
-      - ./src/bootstrap:/opt/cafienne/bootstrap
-      - ./src/jdbc-conf:/opt/cafienne/conf
+      - ./src/configurations/bootstrap:/opt/cafienne/bootstrap
+      - ./src/configurations/jdbc-conf:/opt/cafienne/conf
       - ./target/definitions:/opt/cafienne/definitions
     healthcheck:
       test: ["CMD", "wget", "-s", "http://localhost:2027/api-docs/swagger.json"]

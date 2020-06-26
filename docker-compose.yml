@@ -39,7 +39,7 @@ services:
     hostname: idp
     container_name: idp
     volumes:
-      - ./src/idp-conf/dex.yaml:/config.yaml
+      - ./src/configurations/idp-conf/dex.yaml:/config.yaml
       - ./run/dex/:/var/dex/
 
   cafienne-ide:
@@ -109,9 +109,9 @@ services:
     volumes:
       - ./run/cafienne/journal:/opt/cafienne/journal
       - ./run/cafienne/logs:/opt/cafienne/logs
+      - ./src/configurations/conf:/opt/cafienne/conf
+      - ./src/configurations/bootstrap:/opt/cafienne/bootstrap
       - ./target/definitions:/opt/cafienne/definitions
-      - ./src/conf:/opt/cafienne/conf
-      - ./src/bootstrap:/opt/cafienne/bootstrap
     depends_on:
       - idp
       - mailcatcher
