@@ -115,7 +115,7 @@
                     <assignment id="_4wCNa_43" contextRef="cfi_csKsD_0">
                         <condition id="_4wCNa_44" language="spel">
                             <body>
-                                <![CDATA[TravelRequest.TravellerDetails.Requestor.toLowerCase()]]>
+                                <![CDATA[TravelRequest.TravellerDetails.Requestor]]>
                             </body>
                         </condition>
                     </assignment>
@@ -136,10 +136,10 @@
                 <cafienne:implementation xmlns:cafienne="org.cafienne" humanTaskRef="approvetravelrequest.humantask">
                     <parameterMapping id="inPM_cm_cslsq_10_0" sourceRef="inTP_cm_csgxw_208_0" targetRef="TravelRequest_2"/>
                     <parameterMapping id="outPM_cm_csFY2_10_0" sourceRef="Approval_2" targetRef="outTP_cm_csgxw_208_0"/>
-                    <assignment id="_4wCNa_48" contextRef="cfi_csKsD_0">
+                    <assignment id="_4wCNa_48" contextRef="cfi_cs9Q0_5">
                         <condition id="_4wCNa_49" language="spel">
                             <body>
-                                <![CDATA[caseInstance.getCaseTeam().getMemberWithRole("Approver")]]>
+                                <![CDATA[Project.Manager]]>
                             </body>
                         </condition>
                     </assignment>
@@ -178,8 +178,7 @@
                     <assignment id="_4wCNa_47" contextRef="cfi_csKsD_0">
                         <condition id="_4wCNa_52" language="spel">
                             <body>
-                                <![CDATA[TravelRequest.TravellerDetails.Requestor.toLowerCase()
-                                ]]>
+                                <![CDATA[TravelRequest.TravellerDetails.Requestor]]>
                             </body>
                         </condition>
                     </assignment>
