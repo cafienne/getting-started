@@ -61,7 +61,7 @@ If you are comfortable with `docker-compose`, feel free to look into the yaml fi
 Sometimes `Cafienne` publishes new versions of the Docker images.
 Through `docker-compose pull` you can retrieve the latest [`Cafienne images`](https://hub.docker.com/orgs/cafienne/repositories) from [Docker Hub](https://hub.docker.com).
 
-#### Examples
+#### Example commands
 ```
 # Spin up the environment in detached mode. Will return the console to you
 docker-compose up -d
@@ -73,7 +73,7 @@ docker-compose stop
 docker-compose pull
 
 
-# Bring up the for the Cassandra/PostgreSQL setup
+# refresh the images for the Cassandra/PostgreSQL setup
 docker-compose -f "cafienne-cassandra.yml" stop
 docker-compose -f "cafienne-cassandra.yml" pull
 docker-compose -f "cafienne-cassandra.yml" up
