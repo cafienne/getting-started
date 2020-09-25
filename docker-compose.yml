@@ -22,6 +22,7 @@ services:
       - 1080
     ports:
       - "1080:1080"
+      - "1025:1025"
     hostname: mailcatcher
     container_name: mailcatcher
 
@@ -89,6 +90,22 @@ services:
     depends_on:
       - cafienne
       - idp
+
+  simple-fake-idp:
+    image: spectare/oidc-token-test-service:latest
+    labels:
+      component: simple-fake-idp
+    networks: 
+      - dev
+    expose:
+      - 2377
+    ports:
+      - "2377:2377"
+    environment:
+      BIND: 0.0.0.0
+      PORT: 2377
+    hostname: simple-fake-idp
+    container_name: simple-fake-idp
 
   cafienne:
     image: cafienne/engine:latest
