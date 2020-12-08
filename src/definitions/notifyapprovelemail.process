@@ -1,4 +1,9 @@
-<process id="id_sbsD" name="notifyapprovelemail.process" description="Notify approver by email" implementationType="http://www.omg.org/spec/CMMN/ProcessType/Unspecified">
+<process id="id_sbsD" name="notifyapprovelemail.process" implementationType="http://www.omg.org/spec/CMMN/ProcessType/Unspecified">
+    <documentation textFormat="text/plain">
+        <text>
+            <![CDATA[Notify approver by email]]>
+        </text>
+    </documentation>
     <input id="travelrequest" name="travelrequest"/>
     <input id="approval" name="approval"/>
     <input id="travellerName" name="travellerName"/>
@@ -57,9 +62,7 @@ a[x-apple-data-detectors] {
 div[style*="margin: 16px 0;"] { margin: 0 !important; }
 </style><style type="text/css"></style></head><body style="margin: 0 !important; padding: 0 !important; background-color: #eeeeee;" bgcolor="#eeeeee">
                 <!-- HIDDEN PREHEADER TEXT -->
-                <div style="display: none; font-size: 1px; color: #fefefe; line-height: 1px; font-family: Open Sans, Helvetica, Arial, sans-serif; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden;">
-Hidden text
-</div>
+                <div style="display: none; font-size: 1px; color: #fefefe; line-height: 1px; font-family: Open Sans, Helvetica, Arial, sans-serif; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden;">Hidden text</div>
                 <table border="0" cellpadding="0" cellspacing="0" width="100%">
                     <tr>
                         <td align="center" style="background-color: #eeeeee;" bgcolor="#eeeeee">
@@ -106,12 +109,10 @@ Hidden text
                                                                 <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:600px;">
                                                                     <tr>
                                                                         <td align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding-top: 15px;">
-                                                                            <p style="font-size: 18px; font-weight: 800; line-height: 24px; color: #333333;">
-                                Hello ${toName},
-                            </p>
+                                                                            <p style="font-size: 18px; font-weight: 800; line-height: 24px; color: #333333;">Hello ${toName},</p>
                                                                             <p style="font-size: 16px; font-weight: 400; line-height: 24px; color: #333333;">
-                                ${travellerName} requests approval for the Travel request:
-                            </p>
+                                                                                ${travellerName} requests approval for the Travel request:
+                                                                            </p>
                                                                             <ul>
                                                                                 <li>Destination(s): ${destinationCity} in ${destinationCountry}</li>
                                                                                 <li>Start date: ${departureDate}</li>
@@ -178,7 +179,8 @@ Hidden text
                     </tr>
                 </table>
             </body></html>
-		]]>
-        </mail-body>
-   </cafienne:implementation>
-</extensionElements></process>
+            ]]>
+            </mail-body>
+        </cafienne:implementation>
+    </extensionElements>
+</process>
