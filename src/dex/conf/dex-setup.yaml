@@ -24,6 +24,9 @@ logger:
   level: "debug"
   format: "json"
 
+frontend: 
+  dir: ./web
+
 staticClients:
 - id: swagger-ui
   redirectURIs:
@@ -35,11 +38,6 @@ staticClients:
   - 'http://localhost:28080/#/oidcresponse'
   name: 'Cafienne Generic UI'
   secret: ZXhhbXBsZS1hcHAtc2VjcmV0
-
-connectors:
-- type: mockCallback
-  id: mock
-  name: Example
 
 # Let dex keep a list of passwords which can be used to login to dex.
 enablePasswordDB: true
@@ -55,20 +53,38 @@ staticPasswords:
   username: "admin"
   userID: "admin"
 
+- email: "lana" #email is the login name for dex;
+  # bcrypt hash of the string "lana"
+  hash: "$2a$10$ZrEQl/enxrc1bhDWrwhKSePYkqCEf.2X3wXeat/hI0ULOptDUpyCS"
+  # userID is the account that is known and registered inside Cafienne engine
+  userID: "lana"
+
 - email: "lana@example.com"
   # bcrypt hash of the string "lana"
   hash: "$2a$10$ZrEQl/enxrc1bhDWrwhKSePYkqCEf.2X3wXeat/hI0ULOptDUpyCS"
-  username: "lana"
+  # userID is the account that is known and registered inside Cafienne engine
   userID: "lana"
 
 - email: "suzy@example.com"
   # bcrypt hash of the string "suzy"
   hash: "$2a$10$3pTi1m5yR.tBcZMV/dJi.O1NlMPN/ZH03eSmNfJFuTOOTm82T03lK"
-  username: "suzy"
+  # userID is the account that is known and registered inside Cafienne engine
+  userID: "suzy"
+
+- email: "suzy"
+  # bcrypt hash of the string "suzy"
+  hash: "$2a$10$3pTi1m5yR.tBcZMV/dJi.O1NlMPN/ZH03eSmNfJFuTOOTm82T03lK"
+  # userID is the account that is known and registered inside Cafienne engine
   userID: "suzy"
 
 - email: "hank@example.com"
   # bcrypt hash of the string "hank"
   hash: "$2a$10$osTMgQ8GxoeWghmYcrBXB.0nV9XsoQkAMUcNlL0/wT7qYoJSnbJzS"
-  username: "hank"
+  # userID is the account that is known and registered inside Cafienne engine
+  userID: "hank"
+
+- email: "hank"
+  # bcrypt hash of the string "hank"
+  hash: "$2a$10$osTMgQ8GxoeWghmYcrBXB.0nV9XsoQkAMUcNlL0/wT7qYoJSnbJzS"
+  # userID is the account that is known and registered inside Cafienne engine
   userID: "hank"
