@@ -27,7 +27,7 @@ services:
 
   idp:
     image: quay.io/dexidp/dex:v2.23.0
-    command: ["serve", "/config.yaml"]
+    command: ["serve", "/dex-setup.yaml"]
     networks:
       - dev
     expose:
@@ -39,7 +39,8 @@ services:
     hostname: idp
     container_name: idp
     volumes:
-      - ./src/idp-conf/dex.yaml:/config.yaml
+      - ./src/dex/conf/dex-setup.yaml:/dex-setup.yaml
+      - ./src/dex/web/:/web/
       - ./run/dex/:/var/dex/
 
   cafienne-ide:
