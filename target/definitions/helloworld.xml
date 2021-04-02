@@ -1,5 +1,24 @@
 <definitions>
-    <case id="helloworld.case" name="HelloWorld">
+    <caseFileItemDefinition name="Greeting" definitionType="http://www.omg.org/spec/CMMN/DefinitionType/Unspecified" id="greeting.cfid">
+        <property name="Message" type="http://www.omg.org/spec/CMMN/PropertyType/string">
+            <extensionElements mustUnderstand="false">
+                <cafienne:implementation xmlns:cafienne="org.cafienne" isBusinessIdentifier="true"/>
+            </extensionElements>
+        </property>
+        <property name="To" type="http://www.omg.org/spec/CMMN/PropertyType/string">
+            <extensionElements mustUnderstand="false">
+                <cafienne:implementation xmlns:cafienne="org.cafienne" isBusinessIdentifier="true"/>
+            </extensionElements>
+        </property>
+        <property name="From" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+    </caseFileItemDefinition>
+    <caseFileItemDefinition name="Response" definitionType="http://www.omg.org/spec/CMMN/DefinitionType/Unspecified" id="response.cfid">
+        <property name="Message" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+        <property name="Date" type="http://www.omg.org/spec/CMMN/PropertyType/date"/>
+        <property name="Time" type="http://www.omg.org/spec/CMMN/PropertyType/time"/>
+        <property name="SomeBoolean" type="http://www.omg.org/spec/CMMN/PropertyType/boolean"/>
+    </caseFileItemDefinition>
+    <case id="helloworld.case" name="HelloWorld" expressionLanguage="spel">
         <documentation textFormat="text/plain">
             <text>
                 <![CDATA[Hello World]]>
@@ -51,7 +70,6 @@ and Send response]]>
 				"type" : "object",
 				"properties" : {
 					"Message" : {
-						"title" : "Greeting",
 						"type" : "string"
 					}
 				}
@@ -102,14 +120,14 @@ and Send response]]>
 }
 </task-model>
                         <duedate id="_nTPPc_9">
-                            <condition id="_nTPPc_10" language="spel">
+                            <condition id="_nTPPc_10">
                                 <body>
                                     <![CDATA[T(java.time.Instant).now()]]>
                                 </body>
                             </condition>
                         </duedate>
                         <assignment id="_nTPPc_3" contextRef="cfi_csVQy_0">
-                            <condition id="_nTPPc_4" language="spel">
+                            <condition id="_nTPPc_4">
                                 <body>
                                     <![CDATA[Greeting.To]]>
                                 </body>
@@ -122,16 +140,14 @@ and Send response]]>
             </humanTask>
             <humanTask id="pid_cm_cs3hg_196" name="Read response" isBlocking="true">
                 <inputs id="inTP_cm_cs3hg_196_0" name="Response" bindingRef="cfi_csVQy_1"/>
-                <outputs id="_nTPPc_6" name="Greeting" bindingRef="cfi_csVQy_0"/>
                 <extensionElements mustUnderstand="false">
-                    <cafienne:implementation name="ReadResponse" xmlns:cafienne="org.cafienne" class="org.cafienne.cmmn.definition.task.WorkflowTaskDefinition" humanTaskRef="readresponse.humantask">
+                    <cafienne:implementation name="ReadRespose" xmlns:cafienne="org.cafienne" class="org.cafienne.cmmn.definition.task.WorkflowTaskDefinition" humanTaskRef="readresponse.humantask">
                         <documentation textFormat="text/plain">
                             <text>
                                 <![CDATA[Read Response]]>
                             </text>
                         </documentation>
                         <input id="Response" name="Response"/>
-                        <output id="_MZBR_Greeting" name="Greeting"/>
                         <task-model>
 			{
 				"schema": {
@@ -172,21 +188,20 @@ and Send response]]>
 			}
 		</task-model>
                         <duedate id="_nTPPc_14">
-                            <condition id="_nTPPc_15" language="spel">
+                            <condition id="_nTPPc_15">
                                 <body>
                                     <![CDATA[T(java.time.Instant).now()]]>
                                 </body>
                             </condition>
                         </duedate>
                         <assignment id="_nTPPc_12" contextRef="cfi_csVQy_0">
-                            <condition id="_nTPPc_13" language="spel">
+                            <condition id="_nTPPc_13">
                                 <body>
                                     <![CDATA[Greeting.From]]>
                                 </body>
                             </condition>
                         </assignment>
                         <parameterMapping id="inPM_cm_cs3hg_196_0" sourceRef="inTP_cm_cs3hg_196_0" targetRef="Response"/>
-                        <parameterMapping id="_nTPPc_5" sourceRef="_MZBR_Greeting" targetRef="_nTPPc_6"/>
                     </cafienne:implementation>
                 </extensionElements>
             </humanTask>
@@ -241,17 +256,6 @@ and Send response]]>
 }</cafienne:start-case-model>
         </extensionElements>
     </case>
-    <caseFileItemDefinition name="Greeting" definitionType="http://www.omg.org/spec/CMMN/DefinitionType/Unspecified" id="greeting.cfid">
-        <property name="Message" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
-        <property name="To" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
-        <property name="From" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
-    </caseFileItemDefinition>
-    <caseFileItemDefinition name="Response" definitionType="http://www.omg.org/spec/CMMN/DefinitionType/Unspecified" id="response.cfid">
-        <property name="Message" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
-        <property name="Date" type="http://www.omg.org/spec/CMMN/PropertyType/date"/>
-        <property name="Time" type="http://www.omg.org/spec/CMMN/PropertyType/time"/>
-        <property name="SomeBoolean" type="http://www.omg.org/spec/CMMN/PropertyType/boolean"/>
-    </caseFileItemDefinition>
     <CMMNDI>
         <CMMNDiagram>
             <CMMNShape cmmnElementRef="cm_HelloWorld.case_HelloWorld_0">
