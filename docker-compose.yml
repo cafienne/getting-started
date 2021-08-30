@@ -11,7 +11,7 @@ services:
     labels:
       component: mta
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:1080"]
+      test: ["CMD", "wget", "-q", "--spider", "http://mailcatcher:1080"]
       interval: 30s
       timeout: 10s
       retries: 5
@@ -82,7 +82,7 @@ services:
       BACKEND_API_HOST: ${BACKEND_API_HOST:-cafienne}
       BACKEND_API_PORT: ${BACKEND_API_PORT:-2027}
     healthcheck:
-      test: ["CMD", "wget", "-s", "http://cafienne:28080/index.html"]
+      test: ["CMD", "wget", "-q", "--spider", "http://cafienne:28080/index.html"]
       interval: 30s
       timeout: 10s
       retries: 6
@@ -103,7 +103,7 @@ services:
     hostname: cafienne
     container_name: cafienne
     healthcheck:
-      test: ["CMD", "wget", "-s", "http://cafienne:2027/api-docs/swagger.json"]
+      test: ["CMD", "wget", "-q", "--spider", "http://cafienne:2027/api-docs/swagger.json"]
       interval: 30s
       timeout: 10s
       retries: 5
