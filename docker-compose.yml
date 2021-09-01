@@ -82,7 +82,7 @@ services:
       BACKEND_API_HOST: ${BACKEND_API_HOST:-cafienne}
       BACKEND_API_PORT: ${BACKEND_API_PORT:-2027}
     healthcheck:
-      test: ["CMD", "wget", "-q", "--spider", "http://cafienne:28080/index.html"]
+      test: ["CMD", "curl", "-sS", "-o", "/dev/null", "http://generic-ui:28080/index.html"]
       interval: 30s
       timeout: 10s
       retries: 6
@@ -103,7 +103,7 @@ services:
     hostname: cafienne
     container_name: cafienne
     healthcheck:
-      test: ["CMD", "wget", "-q", "--spider", "http://cafienne:2027/api-docs/swagger.json"]
+      test: ["CMD", "curl", "-sS", "-o", "/dev/null", "http://cafienne:2027/api-docs/swagger.json"]
       interval: 30s
       timeout: 10s
       retries: 5
