@@ -12,9 +12,9 @@ services:
       component: mta
     healthcheck:
       test: ["CMD", "wget", "-q", "--spider", "http://mailcatcher:1080"]
-      interval: 30s
-      timeout: 10s
-      retries: 5
+      interval: 10s
+      timeout: 5s
+      retries: 6
     networks:
       - dev
     expose:
@@ -83,8 +83,8 @@ services:
       BACKEND_API_PORT: ${BACKEND_API_PORT:-2027}
     healthcheck:
       test: ["CMD", "curl", "-sS", "-o", "/dev/null", "http://generic-ui/index.html"]
-      interval: 30s
-      timeout: 10s
+      interval: 10s
+      timeout: 5s
       retries: 6
     depends_on:
       - cafienne
@@ -104,9 +104,9 @@ services:
     container_name: cafienne
     healthcheck:
       test: ["CMD", "curl", "-sS", "-o", "/dev/null", "http://cafienne:2027/status"]
-      interval: 30s
-      timeout: 10s
-      retries: 5
+      interval: 10s
+      timeout: 5s
+      retries: 6
     volumes:
       - ./run/cafienne/journal:/opt/cafienne/journal
       - ./run/cafienne/logs:/opt/cafienne/logs
