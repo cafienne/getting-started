@@ -103,7 +103,7 @@ services:
     hostname: cafienne
     container_name: cafienne
     healthcheck:
-      test: ["CMD", "curl", "-sS", "-o", "/dev/null", "http://cafienne:2027/api-docs/swagger.json"]
+      test: ["CMD", "curl", "-sS", "-o", "/dev/null", "http://cafienne:2027/status"]
       interval: 30s
       timeout: 10s
       retries: 5
