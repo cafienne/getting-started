@@ -10,6 +10,11 @@ services:
     image: schickling/mailcatcher:latest
     labels:
       component: mta
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://mailcatcher:1080"]
+      interval: 10s
+      timeout: 5s
+      retries: 6
     networks:
       - dev
     expose:
@@ -19,11 +24,6 @@ services:
       - "1080:1080"
     hostname: mailcatcher
     container_name: mailcatcher
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:1080"]
-      interval: 30s
-      timeout: 10s
-      retries: 5
 
   idp:
     image: quay.io/dexidp/dex:v2.23.0
@@ -102,9 +102,9 @@ services:
       BACKEND_API_HOST: ${BACKEND_API_HOST:-cafienne}
       BACKEND_API_PORT: ${BACKEND_API_PORT:-2027}
     healthcheck:
-      test: ["CMD", "wget", "-s", "http://localhost:28080/index.html"]
-      interval: 30s
-      timeout: 10s
+      test: ["CMD", "curl", "-sS", "-o", "/dev/null", "http://generic-ui/index.html"]
+      interval: 10s
+      timeout: 5s
       retries: 6
     depends_on:
       - cafienne
@@ -140,10 +140,10 @@ services:
       - ./src/jdbc-conf:/opt/cafienne/conf
       - ./target/definitions:/opt/cafienne/definitions
     healthcheck:
-      test: ["CMD", "wget", "-s", "http://localhost:2027/api-docs/swagger.json"]
-      interval: 30s
-      timeout: 10s
-      retries: 5
+      test: ["CMD", "curl", "-sS", "-o", "/dev/null", "http://cafienne:2027/status"]
+      interval: 10s
+      timeout: 5s
+      retries: 6
     depends_on:
       - sql-server
       - idp

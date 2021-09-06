@@ -11,10 +11,10 @@ services:
     labels:
       component: mta
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:1080"]
-      interval: 30s
-      timeout: 10s
-      retries: 5
+      test: ["CMD", "wget", "-q", "--spider", "http://mailcatcher:1080"]
+      interval: 10s
+      timeout: 5s
+      retries: 6
     networks:
       - dev
     expose:
@@ -76,9 +76,9 @@ services:
      - cassandra-conf-cs-data:/var/lib/cassandra    
     healthcheck:
       test: ["CMD", "cqlsh", "--execute", "show version;quit"]
-      interval: 30s
-      timeout: 10s
-      retries: 5
+      interval: 10s
+      timeout: 5s
+      retries: 6
 
   cafienne-ide:
     image: cafienne/ide:latest
@@ -119,9 +119,9 @@ services:
       BACKEND_API_HOST: ${BACKEND_API_HOST:-cafienne}
       BACKEND_API_PORT: ${BACKEND_API_PORT:-2027}
     healthcheck:
-      test: ["CMD", "wget", "-s", "http://localhost:28080/index.html"]
-      interval: 30s
-      timeout: 10s
+      test: ["CMD", "curl", "-sS", "-o", "/dev/null", "http://generic-ui/index.html"]
+      interval: 10s
+      timeout: 5s
       retries: 6
     depends_on:
       - cafienne
@@ -140,10 +140,10 @@ services:
     hostname: cafienne
     container_name: cafienne
     healthcheck:
-      test: ["CMD", "wget", "-s", "http://localhost:2027/api-docs/swagger.json"]
-      interval: 30s
-      timeout: 10s
-      retries: 5
+      test: ["CMD", "curl", "-sS", "-o", "/dev/null", "http://cafienne:2027/status"]
+      interval: 10s
+      timeout: 5s
+      retries: 6
     environment:
       CS_HOST: ${CS_HOST:-cassandra}
       PROJECTION_DB_URL: ${PROJECTION_DB_URL:-jdbc:postgresql://postgres:5432/cafienne-query?reWriteBatchedInserts=true}    
