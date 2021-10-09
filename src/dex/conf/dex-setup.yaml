@@ -33,7 +33,7 @@ staticClients:
   - 'http://localhost:2027/oauth2-redirect.html'
   name: 'Cafienne Swagger UI'
   secret: ZXhhbXBsZS1hcHAtc2VjcmV0
-- id: cafienne-ui 
+- id: generic-ui 
   redirectURIs:
   - 'http://localhost:28080/#/oidcresponse'
   name: 'Cafienne Generic UI'
