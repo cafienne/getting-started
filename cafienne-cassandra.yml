@@ -127,6 +127,26 @@ services:
       - cafienne
       - idp
 
+  cafienne-ui:
+    image: cafienne/cafienne-ui:latest
+    labels:
+      component: cafienne-ui
+    networks:
+      - dev
+    ports:
+      - "3317:80"
+    expose:
+      - 3317
+    hostname: cafienne-ui
+    container_name: cafienne-ui
+    environment:
+      OIDC_URI: ${OIDC_URI:-http://localhost:5556/dex}
+      OIDC_CLIENT_ID: ${OIDC_CLIENT_ID:-cafienne-ui}
+      CAFIENNE_URI: ${CAFIENNE_URI:-http://localhost:2027}
+    depends_on:
+      - cafienne
+      - idp
+
   cafienne:
     image: cafienne/engine:latest
     labels:

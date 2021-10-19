@@ -34,7 +34,7 @@ This setup is the most default version. This version runs with an in-memory data
 After starting up the Cafienne Demo environment, the following URL allow you to access the various parts of the
 environment:
 
-- Cafienne Generic UI: http://localhost:28080
+- Cafienne Generic UI: http://localhost:3317
 - Cafienne IDE environment: http://localhost:2081
 - Cafienne API (exposed through Swagger): http://localhost:2027
 - MailCatcher web UI: http://localhost:1080
