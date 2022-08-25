@@ -1,0 +1,4 @@
+<caseFileItemDefinition name="output" definitionType="http://www.omg.org/spec/CMMN/DefinitionType/Unspecified">
+    <property name="message" type="http://www.omg.org/spec/CMMN/PropertyType/string"/>
+    <property name="success" type="http://www.omg.org/spec/CMMN/PropertyType/boolean"/>
+</caseFileItemDefinition>

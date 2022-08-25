@@ -1,0 +1,39 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.245.0/containers/typescript-node
+{
+	"name": "Cafienne Getting Started demo development project",
+	"service": "workspace",
+	"workspaceFolder": "/home/vscode/workspaces/cafienne/",
+	"dockerComposeFile": [
+		"../test/docker/docker-compose.yml",
+		"docker-compose.workspace.yml"
+	],
+
+	// Configure tool-specific properties.
+	"customizations": {
+		// Configure properties specific to VS Code.
+		"vscode": {
+			// Add the IDs of extensions you want installed when the container is created.
+			"extensions": [
+				"hbenl.vscode-mocha-test-adapter",
+				"hbenl.vscode-test-explorer",
+				"weakptr.javascript-test-runner",
+				"eamodio.gitlens",
+				"eg2.vscode-npm-script",
+				"ms-azuretools.vscode-docker",
+				"traBpUkciP.vscode-npm-scripts",
+				"ms-vscode.test-adapter-converter",
+				"redhat.vscode-yaml"
+			]
+		}
+	},
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	"forwardPorts": [33077, 33080, 33081, 33077, 12378]
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	// "postCreateCommand": "yarn install",
+
+	// Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
+	// "remoteUser": "node"
+}
