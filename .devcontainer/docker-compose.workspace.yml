@@ -4,7 +4,7 @@ services:
     image: wjgerritsen/cafienne-dev:latest
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ../..:/home/vscode/workspaces/cafienne/
+      - ../..:/workspaces/getting-started
     ports:
       - 12378
     tty: true           # <- keeps container running
