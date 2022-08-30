@@ -62,7 +62,6 @@ describe('CallMeBackTest', async function () {
     this.beforeAll(async function () {
         await setupMockServer(mockServer);
         await testTenant.create();
-        await RepositoryService.validateAndDeploy(partner, callMeBackDefinition, tenant);
     });
     this.afterAll(async function() {
         await mockServer.stop();

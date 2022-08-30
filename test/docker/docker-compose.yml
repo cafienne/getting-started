@@ -41,7 +41,7 @@ services:
     volumes:
       - ../../bin/run/cafienne/journal:/opt/cafienne/journal
       - ../../bin/run/cafienne/logs:/opt/cafienne/logs
-      - ../../bin/run/cafienne/definitions:/opt/cafienne/definitions
+      - ../../CaseFiles/Compiled:/opt/cafienne/definitions
       - ./src/conf:/opt/cafienne/conf
       - ./src/bootstrap:/opt/cafienne/bootstrap
   test_ide_service:

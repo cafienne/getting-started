@@ -23,7 +23,6 @@ describe('HelloWorldTest', async function () {
 
     this.beforeAll(async function () {
         await testTenant.create();
-        await RepositoryService.validateAndDeploy(partner, helloWorldDefinition, tenant);
     });
 
     it('CreateAndCompleteCase', async function () {
