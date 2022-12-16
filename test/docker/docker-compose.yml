@@ -21,13 +21,14 @@ services:
     hostname: test_token_service
     container_name: test_token_service
   test_engine_service:
-    image: docker.io/cafienne/engine:1.1.21
+    image: docker.io/cafienne/engine:1.1.23
     labels:
       component: cafienne-engine    
     networks: 
       - dev
     ports:
       - "33027:2027"
+      - "33028:8082"
     hostname: test_engine_service
     container_name: test_engine_service
     healthcheck:
@@ -92,8 +93,3 @@ services:
 networks:
   dev: 
     driver: bridge
-    ipam:
-      driver: default
-      config:
-        - subnet: 172.16.238.0/24
-          gateway: 172.16.238.1

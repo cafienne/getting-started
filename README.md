@@ -19,6 +19,10 @@ environment:
 - Cafienne IDE environment: http://localhost:33081
 - Cafienne Generic UI: http://localhost:33080 (login with: employee-eddy/Eddy)
 - Cafienne API (exposed through Swagger): http://localhost:33027 (Authorize with: employee-eddy/Eddy)
+- Cafienne Query database (exposed through h2 client): http://localhost:33028/
+  - Setting: Generic HSQLDB
+  - Driver Class: org.hsqldb.jdbcDriver
+  - JDBC URL: jdbc:hsqldb:mem:mymemdb
 
 ## Building and deploying a CMMN model
 

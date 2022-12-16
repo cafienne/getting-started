@@ -29,7 +29,7 @@
 	},
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	"forwardPorts": [33077, 33080, 33081, 33077, 12378],
+	"forwardPorts": [33077, 33080, 33081, 12378, 33027, 33028],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
     "postCreateCommand": "chmod 777 /workspaces/getting-started/bin/run/cafienne/*"
