@@ -4,39 +4,45 @@
             <pattern>%date|%-5level %logger{36} - %msg%n</pattern>
         </encoder>
     </appender>
-    
-    <appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>logs/application.log</file>
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <!-- Daily rollover with compression -->
-            <fileNamePattern>logs/application-log-%d{yyyy-MM-dd}.gz</fileNamePattern>
-            <!-- keep 10 days worth of history -->
-            <maxHistory>10</maxHistory>
-        </rollingPolicy>
-        <encoder>
-            <pattern>%date{yyyy-MM-dd HH:mm:ss.SSS ZZZZ} [%level] from %logger in %thread - %message%n%xException</pattern>
-        </encoder>
-    </appender>
-    <appender name="async_file" class="ch.qos.logback.classic.AsyncAppender">
-        <appender-ref ref="file" />
-    </appender>
 
-    <logger name="akka.cluster.ClusterHeartbeatSender"    level="WARN" />
-    <logger name="akka.cluster.ClusterCoreDaemon" level="WARN" />
-    <logger name="akka.serialization" level="WARN" />
-    <logger name="org.cafienne"    level="INFO" />
-<!--        <logger name="org.cafienne.cmmn"    level="DEBUG" />-->
-<!--        <logger name="org.cafienne.service"    level="DEBUG" />-->
+    <logger name="org.cafienne" level="WARN"/>
+
+    <!-- Show Storage Service logging INFO is light, DEBUG is full logging -->
+    <!--    <logger name="org.cafienne.storage" level="INFO"/>-->
+    <!--    <logger name="org.cafienne.storage" level="DEBUG"/>-->
+
+    <!-- Show HTTP traffic logging -->
+    <!--        <logger name="org.cafienne.service.akkahttp" level="DEBUG" />-->
+
+    <!-- Show Authentication Setup logging -->
+    <!--    <logger name="org.cafienne.authentication" level="INFO" />-->
+
+    <!-- Show logging for offset of projections -->
+    <!--    <logger name="org.cafienne.querydb.materializer.cases.CaseEventSink" level="DEBUG" />-->
+    <!--    <logger name="org.cafienne.querydb.materializer.tenant.TenantEventSink"    level="DEBUG" />-->
+    <!--    <logger name="org.cafienne.querydb.materializer.consentgroup.ConsentGroupEventSink"    level="DEBUG" />-->
+
+    <!-- Show all projections logging, including info on event being handled -->
+    <!--    <logger name="org.cafienne.querydb.materializer" level="DEBUG" />-->
+
+    <!-- Show logging for cases in the engine -->
+    <!--    <logger name="org.cafienne.cmmn" level="DEBUG" />-->
+
+    <!-- Show timer service logging -->
+    <!--    <logger name="org.cafienne.timerservice" level="DEBUG" />-->
+
     <logger name="com.datastax" level="WARN"/>
     <logger name="com.wordnik" level="ERROR"/>
-    <logger name="slick" level="WARN"/>
-<!--    <logger name="slick.basic.BasicBackend.action" level="DEBUG"/>-->
-<!--    <logger name="slick.jdbc.JdbcBackend.statement" level="DEBUG"/>-->
+    <logger name="com.gettyimages" level="ERROR"/>
+    <logger name="com.zaxxer.hikari" level="WARN"/>
+
+    <logger name="slick" level="INFO"/>
+    <!--    <logger name="slick.basic.BasicBackend.action" level="DEBUG"/>-->
+    <!--    <logger name="slick.jdbc.JdbcBackend.statement" level="DEBUG"/>-->
     <!--<logger name="slick.jdbc.JdbcBackend.statementAndParameter" level="DEBUG"/>-->
     <!--<logger name="slick.jdbc.JdbcBackend.parameter" level="DEBUG"/>-->
-    <logger name="org.flywaydb" level="INFO"/>
-    <root level="WARN">
+    <!--    <logger name="org.flywaydb" level="INFO"/>-->
+    <root level="INFO">
         <appender-ref ref="console"/>
-        <appender-ref ref="async_file" />
     </root>
 </configuration>
