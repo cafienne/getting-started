@@ -16,7 +16,7 @@ services:
       timeout: 5s
       retries: 6
     networks:
-      - dev
+      - getting_started_network
     expose:
       - 1025
       - 1080
@@ -29,7 +29,7 @@ services:
     image: quay.io/dexidp/dex:v2.23.0
     command: ["serve", "/dex-setup.yaml"]
     networks:
-      - dev
+      - getting_started_network
     expose:
       - 5556
       - 5558
@@ -46,7 +46,7 @@ services:
   cafienne-event-db:
     image: postgres:12.1-alpine
     networks:
-      - dev
+      - getting_started_network
     expose:
       - 5432
     ports:
@@ -63,7 +63,7 @@ services:
   cafienne-query-db:
     image: postgres:12.1-alpine
     networks:
-      - dev
+      - getting_started_network
     expose:
       - 5432
     ports:
@@ -82,7 +82,7 @@ services:
     labels: 
       component: cafienne-ide
     networks:
-      - dev
+      - getting_started_network
     expose:
       - 2081
     ports:
@@ -102,7 +102,7 @@ services:
     labels: 
       component: generic-ui
     networks: 
-      - dev
+      - getting_started_network
     ports:
       - "28080:80"
     hostname: generic-ui
@@ -129,7 +129,7 @@ services:
     labels:
       component: cafienne-ui
     networks:
-      - dev
+      - getting_started_network
     ports:
       - "3317:80"
     expose:
@@ -149,7 +149,7 @@ services:
     labels:
       component: cafienne-engine    
     networks: 
-      - dev
+      - getting_started_network
     expose:
       - 2027
     ports:
@@ -192,5 +192,5 @@ volumes:
   dex:
     driver: local
 networks:
-  dev:
+  getting_started_network:
     driver: bridge
