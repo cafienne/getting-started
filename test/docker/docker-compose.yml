@@ -7,7 +7,7 @@ version: '3.1'
 
 services:
   test_token_service:
-    image: spectare/oidc-token-test-service:latest
+    image: spectare/fakeidp:1.0.0
     labels:
       component: idp-test-service-for-cafienne
     networks: 
@@ -21,7 +21,7 @@ services:
     hostname: test_token_service
     container_name: test_token_service
   test_engine_service:
-    image: docker.io/cafienne/engine:1.1.23
+    image: docker.io/cafienne/engine:1.1.29
     labels:
       component: cafienne-engine    
     networks: 
