@@ -90,7 +90,7 @@ describe('CallMeBackTest', async function () {
         var caseInstance = await CaseService.startCase(employee, startCase);
         console.log(caseInstance);
 
-        await assertPlanItem(employee, caseInstance.id, "CallMeBack", 0, State.Completed);
+        await assertPlanItem(employee, caseInstance.id, "CallMeBack", 0, State.Failed);
         await assertCaseFileContent(employee, caseInstance.id, "output/success", false);
     });
 });

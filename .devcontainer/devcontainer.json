@@ -5,7 +5,9 @@
 	"service": "workspace",
 	"workspaceFolder": "/workspaces/getting-started",
 	"dockerComposeFile": [
-		"../test/docker/docker-compose.yml",
+// choose one of the 2 docker environments below (postgres or inmemory)		
+		"../test/docker/docker-compose-postgresdb.yml",
+//		"../test/docker/docker-compose-inmemorydb.yml",
 		"docker-compose.workspace.yml"
 	],
 
@@ -32,7 +34,11 @@
 	"forwardPorts": [33077, 33080, 33081, 12378, 33027, 33028],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-    "postCreateCommand": "chmod 777 /workspaces/getting-started/bin/run/cafienne/*"
+	"postCreateCommand": {
+		"dbfolders": "mkdir -p /workspaces/getting-started/bin/run/cafienne/postgres-event-db-data /workspaces/getting-started/bin/run/cafienne/postgres-query-db-data",
+		"permissions": "chmod 777 /workspaces/getting-started/bin/run/cafienne/*",
+		"npm": "npm install"
+	  }
 
 	// Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
 	// "remoteUser": "node"

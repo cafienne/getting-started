@@ -1,10 +1,4 @@
-# This docker-compose file launches the Token Generator
-#
-# To run, call:
-#   $ docker-compose up
-#
-version: '3.1'
-
+name: cafienne_pg
 services:
   test_token_service:
     image: spectare/fakeidp:1.0.0
@@ -38,12 +32,12 @@ services:
       timeout: 2s
       retries: 5
     environment:
-      - TestBaseUrl=http://workspace:12378
+      TestBaseUrl: http://workspace:12378
     volumes:
       - ../../bin/run/cafienne/journal:/opt/cafienne/journal
       - ../../bin/run/cafienne/logs:/opt/cafienne/logs
       - ../../CaseFiles/Compiled:/opt/cafienne/definitions
-      - ./src/conf:/opt/cafienne/conf
+      - ./src/conf_inmemorydb:/opt/cafienne/conf
       - ./src/bootstrap:/opt/cafienne/bootstrap
   test_ide_service:
     image: docker.io/cafienne/ide:latest
@@ -87,8 +81,12 @@ services:
       timeout: 5s
       retries: 6
     depends_on:
-      - test_engine_service
-      - test_token_service
+      test_engine_service:
+        condition: service_started
+        required: false
+      test_token_service:
+        condition: service_started
+        required: false
 
 networks:
   dev: 

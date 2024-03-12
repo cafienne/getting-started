@@ -5,11 +5,13 @@ This repository enables you to quickly setup a Cafienne Demo environment with Do
 ## Prerequisites
 
 The Cafienne Demo environment consists of a set of Docker images. Make sure you have a running [Docker](https://www.docker.com/) or  [Rancher(moby)](https://rancherdesktop.io/) instance available on your system.
-Also make sure VSCode is isntalled.
+Also make sure VSCode is installed.
 
 ## Downloading and starting the environment
 
 Open the development container with: [![Open in Remote - Containers](https://img.shields.io/static/v1?label=Remote%20-%20Containers&message=Open&color=blue&logo=visualstudiocode)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/cafienne/getting-started).
+
+In the file .devcontainer/devcontainer.json one can make the choice between running with an inmemory db (H2) or with postgresdb. 
 
 ## Exposed URLs of the Cafienne Demo environment
 
@@ -19,10 +21,15 @@ environment:
 - Cafienne IDE environment: http://localhost:33081
 - Cafienne Generic UI: http://localhost:33080 (login with: employee-eddy/Eddy)
 - Cafienne API (exposed through Swagger): http://localhost:33027 (Authorize with: employee-eddy/Eddy)
-- Cafienne Query database (exposed through h2 client): http://localhost:33028/
-  - Setting: Generic HSQLDB
-  - Driver Class: org.hsqldb.jdbcDriver
-  - JDBC URL: jdbc:hsqldb:mem:mymemdb
+- Cafienne Query database manager: http://localhost:33028/
+  - In case of PGAdmin (postgres)
+    - login: user@domain.com / SuperSecret
+    - connect cafienne databases with password: mysecret
+  - In case of H2 (inmemory)
+    - Setting: Generic HSQLDB
+    - Driver Class: org.hsqldb.jdbcDriver
+    - JDBC URL: jdbc:hsqldb:mem:mymemdb
+
 
 ## Building and deploying a CMMN model
 
