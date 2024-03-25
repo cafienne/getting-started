@@ -1,0 +1,22 @@
+{
+    "Servers": {
+        "1": {
+            "Name": "Query",
+            "Group": "Cafienne databases",
+            "Port": 5432,
+            "Username": "postgresuser",
+            "Host": "cafienne-query-db",
+            "SSLMode": "prefer",
+            "MaintenanceDB": "postgres"
+        },
+        "2": {
+            "Name": "Event",
+            "Group": "Cafienne databases",
+            "Port": 5432,
+            "Username": "postgresuser",
+            "Host": "cafienne-event-db",
+            "SSLMode": "prefer",
+            "MaintenanceDB": "postgres"
+        }
+    }
+}

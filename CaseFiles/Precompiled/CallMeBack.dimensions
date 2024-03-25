@@ -1,0 +1,13 @@
+<CMMNDI>
+    <CMMNDiagram>
+        <CMMNShape cmmnElementRef="cm__xgszO_0">
+            <Bounds x="20" y="20" width="800" height="500"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="pi_pt__xgszO_0">
+            <Bounds x="190" y="130" width="140" height="80"/>
+        </CMMNShape>
+        <CMMNShape cmmnElementRef="pi_ue__xgszO_0">
+            <Bounds x="490" y="200" width="32" height="32"/>
+        </CMMNShape>
+    </CMMNDiagram>
+</CMMNDI>

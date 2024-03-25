@@ -1,0 +1,7 @@
+{
+    "extension": [
+      "ts"
+    ],
+    "logVerbose ": true,
+    "esModuleInterop": true
+}

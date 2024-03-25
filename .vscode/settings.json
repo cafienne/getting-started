@@ -1,0 +1,8 @@
+{
+    "testExplorer.addToEditorContextMenu": true,
+    "mochaExplorer.asyncOnly": true,
+    "mochaExplorer.logpanel": true,
+    "mochaExplorer.files": "test/**/*.ts",
+    "workbench.colorTheme": "Quiet Light",
+    "npm-scripts.showStartNotification": false,
+}
