@@ -475,7 +475,7 @@
                 </transformation>
             </parameterMapping>
         </processTask>
-        <userEvent id="cm_csEae_323" name="Cancel Travel request"/>
+        <userEvent id="cm_csEae_323" name="Cancel Travel request" authorizedRoleRefs="role_csKsD_1 role_csKsD_0"/>
         <stage id="cm_csSAF_389" name="Check prerequisites" autoComplete="true">
             <processTask id="cm_csSAF_392" name="Check travel requirements" isBlocking="true" processRef="checktravelrequirements.process">
                 <entryCriterion id="_4wCNa_11" name="EntryCriterion_10">
