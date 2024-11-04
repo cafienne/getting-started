@@ -4,10 +4,7 @@
             <![CDATA[Hello World]]>
         </text>
     </documentation>
-    <caseFileModel>
-        <caseFileItem id="cfi_csVQy_0" name="Greeting" multiplicity="ExactlyOne" definitionRef="greeting.cfid"/>
-        <caseFileItem id="cfi_csVQy_1" name="Response" multiplicity="ExactlyOne" definitionRef="response.cfid"/>
-    </caseFileModel>
+    <caseFileModel typeRef="helloworld.type"/>
     <casePlanModel id="cm_HelloWorld.case_HelloWorld_0" name="HelloWorld" autoComplete="true">
         <humanTask id="cm_csVQy_167" name="Receive Greeting and Send response" isBlocking="true">
             <documentation textFormat="text/plain">
@@ -16,13 +13,13 @@
 and Send response]]>
                 </text>
             </documentation>
-            <inputs id="inTP_cm_cs2F1_174_1" name="Greeting" bindingRef="cfi_csVQy_0"/>
-            <outputs id="outTP_cm_cs2F1_174_1" name="Response" bindingRef="cfi_csVQy_1"/>
+            <inputs id="inTP_cm_cs2F1_174_1" name="Greeting" bindingRef="Greeting"/>
+            <outputs id="outTP_cm_cs2F1_174_1" name="Response" bindingRef="Response"/>
             <extensionElements mustUnderstand="false">
                 <cafienne:implementation xmlns:cafienne="org.cafienne" humanTaskRef="sendresponse.humantask">
                     <parameterMapping id="inPM_cm_cshJq_4_0" sourceRef="inTP_cm_cs2F1_174_1" targetRef="Greeting"/>
                     <parameterMapping id="outPM_cm_csuYs_174_0" sourceRef="Response" targetRef="outTP_cm_cs2F1_174_1"/>
-                    <assignment id="_nTPPc_3" contextRef="cfi_csVQy_0">
+                    <assignment id="_nTPPc_3" contextRef="Greeting">
                         <condition id="_nTPPc_4">
                             <body>
                                 <![CDATA[Greeting.To]]>
@@ -45,11 +42,11 @@ and Send response]]>
                     <standardEvent>complete</standardEvent>
                 </planItemOnPart>
             </entryCriterion>
-            <inputs id="inTP_cm_cs3hg_196_0" name="Response" bindingRef="cfi_csVQy_1"/>
+            <inputs id="inTP_cm_cs3hg_196_0" name="Response" bindingRef="Response"/>
             <extensionElements mustUnderstand="false">
                 <cafienne:implementation xmlns:cafienne="org.cafienne" humanTaskRef="readresponse.humantask">
                     <parameterMapping id="inPM_cm_cs3hg_196_0" sourceRef="inTP_cm_cs3hg_196_0" targetRef="Response"/>
-                    <assignment id="_nTPPc_12" contextRef="cfi_csVQy_0">
+                    <assignment id="_nTPPc_12" contextRef="Greeting">
                         <condition id="_nTPPc_13">
                             <body>
                                 <![CDATA[Greeting.From]]>
@@ -76,7 +73,7 @@ and Send response]]>
             </documentation>
         </role>
     </caseRoles>
-    <input id="csVQy_inCPs_0" name="Greeting" bindingRef="cfi_csVQy_0"/>
+    <input id="csVQy_inCPs_0" name="Greeting" bindingRef="Greeting"/>
     <extensionElements mustUnderstand="false">
         <cafienne:start-case-model xmlns:cafienne="org.cafienne">{
   "schema": {
@@ -117,3 +114,4 @@ and Send response]]>
 }</cafienne:start-case-model>
     </extensionElements>
 </case>
+
