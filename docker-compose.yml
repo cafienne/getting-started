@@ -81,33 +81,6 @@ services:
     depends_on:
       - cafienne
 
-  generic-ui:
-    image: cafienne/generic-ui:latest
-    labels: 
-      component: generic-ui
-    networks: 
-      - getting_started_network
-    ports:
-      - "28080:80"
-    hostname: generic-ui
-    container_name: generic-ui
-    environment:
-      NODE_ENV: production
-      BACKEND_OIDC_HOST: ${BACKEND_OIDC_HOST:-generic-ui}
-      BACKEND_OIDC_PORT: ${BACKEND_OIDC_PORT:-28080}
-      BACKEND_DEX_HOST: ${BACKEND_DEX_HOST:-idp}
-      BACKEND_DEX_PORT: ${BACKEND_DEX_PORT:-5556}
-      BACKEND_API_HOST: ${BACKEND_API_HOST:-cafienne}
-      BACKEND_API_PORT: ${BACKEND_API_PORT:-2027}
-    healthcheck:
-      test: ["CMD", "curl", "-sS", "-o", "/dev/null", "http://generic-ui/index.html"]
-      interval: 10s
-      timeout: 5s
-      retries: 6
-    depends_on:
-      - cafienne
-      - idp
-
   cafienne-ui:
     image: cafienne/cafienne-ui:latest
     labels:
