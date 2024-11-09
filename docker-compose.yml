@@ -124,11 +124,11 @@ services:
       EVENT_DB_DRIVER: ${EVENT_DB_DRIVER:-org.postgresql.Driver}
       EVENT_DB_USER: ${EVENT_DB_USER:-postgresuser}
       EVENT_DB_PASSWORD: ${EVENT_DB_PASSWORD:-mysecret}
-      PROJECTION_DB_PROFILE: ${PROJECTION_DB_PROFILE:-slick.jdbc.PostgresProfile$}
-      PROJECTION_DB_DRIVER: ${PROJECTION_DB_DRIVER:-org.postgresql.Driver}
-      PROJECTION_DB_USER: ${PROJECTION_DB_USER:-postgresuser}
-      PROJECTION_DB_PASSWORD: ${PROJECTION_DB_PASSWORD:-mysecret}
-      PROJECTION_DB_URL: ${PROJECTION_DB_URL:-jdbc:postgresql://cafienne-db:5432/cafienne-query?reWriteBatchedInserts=true}
+      QUERY_DB_PROFILE: ${QUERY_DB_PROFILE:-slick.jdbc.PostgresProfile$}
+      QUERY_DB_DRIVER: ${QUERY_DB_DRIVER:-org.postgresql.Driver}
+      QUERY_DB_USER: ${QUERY_DB_USER:-postgresuser}
+      QUERY_DB_PASSWORD: ${QUERY_DB_PASSWORD:-mysecret}
+      QUERY_DB_URL: ${QUERY_DB_URL:-jdbc:postgresql://cafienne-db:5432/cafienne-query?reWriteBatchedInserts=true}
     volumes:
       - ./run/cafienne/journal:/opt/cafienne/journal
       - ./run/cafienne/logs:/opt/cafienne/logs
