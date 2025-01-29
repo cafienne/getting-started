@@ -33,15 +33,10 @@ staticClients:
   - 'http://localhost:2027/oauth2-redirect.html'
   name: 'Cafienne Swagger UI'
   secret: ZXhhbXBsZS1hcHAtc2VjcmV0
-- id: generic-ui 
-  redirectURIs:
-  - 'http://localhost:28080/#/oidcresponse'
-  name: 'Cafienne Generic UI'
-  secret: ZXhhbXBsZS1hcHAtc2VjcmV0
-- id: cafienne-ui 
+- id: case-user-interface
   redirectURIs:
   - 'http://localhost:3317/callback'
-  name: 'Cafienne UI'
+  name: 'Case User Interface'
   secret: ZXhhbXBsZS1hcHAtc2VjcmV0
 
 # Let dex keep a list of passwords which can be used to login to dex.
