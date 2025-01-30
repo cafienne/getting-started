@@ -1,9 +1,8 @@
 # This compose will work with docker 1.13.1+
 #
 # To run, call:
-#   $ docker-compose -f cafienne-postgres.yml up
+#   $ docker-compose up
 #
-version: '3.1'
 services:
   # supporting containers
   mailcatcher:
@@ -43,7 +42,7 @@ services:
       - ./src/dex/web/:/web/
       - ./run/dex/:/var/dex/
 
-  cafienne-db:
+  case-engine-db-postgres:
     image: postgres:16
     networks:
       - getting_started_network
@@ -51,20 +50,19 @@ services:
       - 5432
     ports:
       - "5431:5432"
-    hostname: cafienne-db
-    container_name: cafienne-getting-started-db
+    hostname: case-engine-db-postgres
+    container_name: case-engine-db-postgres
     environment:
-      POSTGRES_USER: postgresuser
-      POSTGRES_PASSWORD: mysecret
-      POSTGRES_DB: cafienne-eventstore
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
     volumes:
       - ./src/postgres-initdb:/docker-entrypoint-initdb.d
-      - cafienne-db-data:/var/lib/postgresql/data
+      - case-engine-db-data:/var/lib/postgresql/data
 
-  cafienne-ide:
+  case-designer:
     image: cafienne/ide:latest
     labels: 
-      component: cafienne-ide
+      component: case-designer
     networks:
       - getting_started_network
     expose:
@@ -72,63 +70,61 @@ services:
     ports:
       - "2081:2081"
     hostname: ide
-    container_name: ide
-    environment:
-      BACKEND_API_URL: ${BACKEND_API_URL:-http://cafienne:2027}
+    container_name: case-designer
     volumes:
       - ./target/definitions:/usr/src/app/repository_deploy
       - ./src/definitions:/usr/src/app/repository   
     depends_on:
-      - cafienne
+      - case-engine
 
-  cafienne-ui:
+  case-user-interface:
     image: cafienne/cafienne-ui:latest
     labels:
-      component: cafienne-ui
+      component: case-user-interface
     networks:
       - getting_started_network
     ports:
       - "3317:80"
     expose:
       - 3317
-    hostname: cafienne-ui
-    container_name: cafienne-ui
+    hostname: case-user-interface
+    container_name: case-user-interface
     environment:
       OIDC_URI: ${OIDC_URI:-http://localhost:5556/dex}
-      OIDC_CLIENT_ID: ${OIDC_CLIENT_ID:-cafienne-ui}
+      OIDC_CLIENT_ID: ${OIDC_CLIENT_ID:-case-user-interface}
       CAFIENNE_URI: ${CAFIENNE_URI:-http://localhost:2027}
     depends_on:
-      - cafienne
+      - case-engine
       - idp
 
-  cafienne:
-    image: cafienne/engine:latest
+  case-engine:
+    image: cafienne/engine:1.1.33
     labels:
-      component: cafienne-engine    
+      component: case-engine    
     networks: 
       - getting_started_network
     expose:
       - 2027
     ports:
       - "2027:2027"
-    hostname: cafienne
-    container_name: cafienne
+    hostname: case-engine
+    container_name: case-engine
     healthcheck:
-      test: ["CMD", "curl", "-sS", "-o", "/dev/null", "http://cafienne:2027/status"]
+      test: ["CMD", "curl", "-sS", "-o", "/dev/null", "http://case-engine:2027/status"]
       interval: 10s
       timeout: 5s
       retries: 6
     environment:
-      EVENT_DB_URL: ${EVENT_DB_URL:-jdbc:postgresql://cafienne-db:5432/cafienne-eventstore?reWriteBatchedInserts=true}    
+      EVENT_DB_URL: ${EVENT_DB_URL:-jdbc:postgresql://case-engine-db-postgres:5432/case-engine-eventstore?reWriteBatchedInserts=true}    
       EVENT_DB_PROFILE: ${EVENT_DB_PROFILE:-slick.jdbc.PostgresProfile$}
       EVENT_DB_DRIVER: ${EVENT_DB_DRIVER:-org.postgresql.Driver}
-      EVENT_DB_USER: ${EVENT_DB_USER:-postgresuser}
-      EVENT_DB_PASSWORD: ${EVENT_DB_PASSWORD:-mysecret}
+      EVENT_DB_USER: ${EVENT_DB_USER:-postgres}
+      EVENT_DB_PASSWORD: ${EVENT_DB_PASSWORD:-postgres}
       QUERY_DB_PROFILE: ${QUERY_DB_PROFILE:-slick.jdbc.PostgresProfile$}
       QUERY_DB_DRIVER: ${QUERY_DB_DRIVER:-org.postgresql.Driver}
-      QUERY_DB_USER: ${QUERY_DB_USER:-postgresuser}
-      QUERY_DB_PASSWORD: ${QUERY_DB_PASSWORD:-mysecret}
-      QUERY_DB_URL: ${QUERY_DB_URL:-jdbc:postgresql://cafienne-db:5432/cafienne-query?reWriteBatchedInserts=true}
+      QUERY_DB_USER: ${QUERY_DB_USER:-postgres}
+      QUERY_DB_PASSWORD: ${QUERY_DB_PASSWORD:-postgres}
+      QUERY_DB_URL: ${QUERY_DB_URL:-jdbc:postgresql://case-engine-db-postgres:5432/case-engine-query?reWriteBatchedInserts=true}
     volumes:
       - ./run/cafienne/journal:/opt/cafienne/journal
       - ./run/cafienne/logs:/opt/cafienne/logs
@@ -136,12 +132,12 @@ services:
       - ./src/conf:/opt/cafienne/conf
       - ./src/bootstrap:/opt/cafienne/bootstrap
     depends_on:
-      - cafienne-db
+      - case-engine-db-postgres
       - idp
       - mailcatcher
 
 volumes:
-  cafienne-db-data:
+  case-engine-db-data:
     driver: local
   dex:
     driver: local
