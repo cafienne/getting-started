@@ -130,6 +130,7 @@ services:
       - ./run/cafienne/logs:/opt/cafienne/logs
       - ./target/definitions:/opt/cafienne/definitions
       - ./src/conf:/opt/cafienne/conf
+      - ./src/ext:/opt/cafienne/lib_ext
       - ./src/bootstrap:/opt/cafienne/bootstrap
     depends_on:
       - case-engine-db-postgres
